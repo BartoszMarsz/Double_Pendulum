@@ -2,7 +2,7 @@ print('Hello world!')
 
 
 import numpy as np
-
+n=0
 m_1=1
 m_2=1
 L_1=1
