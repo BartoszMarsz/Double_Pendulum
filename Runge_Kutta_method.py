@@ -4,7 +4,7 @@ m_2=1.0
 L_1=1.0
 L_2=1.0
 M=m_2/(m_1+m_2)
-g=10.0
+g=9.81
 
 def f_1(theta_1,theta_2,omega_1,omega_2):
     gamma = theta_1-theta_2
@@ -37,5 +37,3 @@ def Runge_Kutta(h,th1,th2,om1,om2):
     om1_= om1 + 1/6*(K_om1_1+2*K_om1_2+2*K_om1_3+K_om1_4)*h
     om2_= om2 + 1/6*(K_om2_1+2*K_om2_2+2*K_om2_3+K_om2_4)*h
     return th1_,th2_,om1_,om2_
-
-

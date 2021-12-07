@@ -1,13 +1,17 @@
 from Runge_Kutta_method import *
-h = 0.01
-th1_0 = 1.047
-th2_0 = 0
-om1_0 = 0
-om2_0 = 0
-th1_1,th2_1,om1_1,om2_1 = Runge_Kutta(h,th1_0,th2_0,om1_0,om2_0)
-print(th1_1,th2_1,om1_1,om2_1)
-
-
+import numpy as np
+import time as t
+h = 0.001
+th1 = np.pi/3
+th2 = 0.0
+om1 = 0.0
+om2 = 0.0
+t1=t.time()
+for i in range(1,10001):
+    th1,th2,om1,om2 = Runge_Kutta(h,th1,th2,om1,om2)
+t2=t.time()
+print(th1,th2,om1,om2)
+print(t2-t1)
 
 
 
