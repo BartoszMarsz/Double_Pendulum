@@ -1,10 +1,10 @@
 import numpy as np
-m_1=1.0
-m_2=1.0
-L_1=1.0
-L_2=1.0
-M=m_2/(m_1+m_2)
-g=9.81
+m_1 = 1.0
+m_2 = 1.0
+L_1 = 1.0
+L_2 = 1.0
+M = m_2 / (m_1 + m_2)
+g = 9.81
 
 def f_1(theta_1,theta_2,omega_1,omega_2):
     gamma = theta_1-theta_2
