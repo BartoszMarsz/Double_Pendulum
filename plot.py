@@ -26,12 +26,24 @@ plt.plot(time,om2,color='y',lw=1,ls='-',label='omega2(t)')
 plt.legend(loc='upper right')
 plt.show()
 
+#-----------
+
+fig, ax = plt.subplots()
+
 x1 = 1*np.sin(data[:,1])
 y1 = -1*np.cos(data[:,1])
 x2=1*np.sin(data[:,1])+1*np.sin(data[:,2])
 y2=-1*np.cos(data[:,1])-1*np.cos(data[:,2])
-plt.plot(x1,y1,color='b')
-plt.plot(x2,y2,color='r')
+plt.plot(x1,y1,color='b',label='punk materialny1')
+plt.plot(x2,y2,color='r',label='punkt materialny2')
 plt.xticks(np.arange(-2,2.5,1))
 plt.yticks(np.arange(-2,2.5,1))
-plt.figure(figsize=(4,4))
+
+ratio = 1.0
+x_left, x_right = ax.get_xlim()
+y_low, y_high = ax.get_ylim()
+ax.set_aspect(abs((x_right-x_left)/(y_low-y_high))*ratio)
+
+plt.legend(loc='upper right')
+
+plt.show()
