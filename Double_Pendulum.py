@@ -2,16 +2,16 @@ from Data_output import *
 import numpy as np
 import time
 
-l1=1
-l2=1
-m1=1
-m2=1
+l1 = 1
+l2 = 1
+m1 = 1
+m2 = 1
 h = 0.01
-t=5
+t = 10
 
 const = (t, h, l1, l2, m1, m2)
 
-th1 = np.pi/3
+th1 = np.pi/2
 th2 = np.pi/2+np.pi/3
 om1 = 0
 om2 = 0
@@ -24,6 +24,7 @@ t2=time.time()
 print(t2-t1)
 from plot import *
 graph()
-trajectory()
+trajectory(const)
+animation()
 
 
