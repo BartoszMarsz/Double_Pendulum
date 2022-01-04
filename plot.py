@@ -65,10 +65,14 @@ def animation():
     x2_data = []
     y2_data = []
     fig, ax = plt.subplots()
-    ax.set_xlim(-2.5,2.5)
-    ax.set_ylim(-2.5,2.5)
+    ax.set_xlim(-(l1+l2),(l1+l2))
+    ax.set_ylim(-(l1+l2),(l1+l2))
     line1, = ax.plot(0,0)
     line2, = ax.plot(0,0)
+    ratio = 1.0
+    x_left, x_right = ax.get_xlim()
+    y_low, y_high = ax.get_ylim()
+    ax.set_aspect(abs((x_right - x_left) / (y_low - y_high)) * ratio)
 
     def animation_frame(i):
         x1_data=np.linspace(0.0,l1*np.sin(th1[i]),10)
