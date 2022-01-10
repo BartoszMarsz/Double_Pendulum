@@ -27,4 +27,4 @@ graph()
 trajectory(const)
 animation()
 
-
+#czas z boku animacji
