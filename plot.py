@@ -46,7 +46,7 @@ def graph():
 
     plt.show()
 
-def trajectory(const):
+def trajectory():
     fig, ax = plt.subplots()
 
     x1 = l1*np.sin(th1)
@@ -107,32 +107,6 @@ def animation():
 
 
 
-# def animation():
-#     x1_data = []
-#     y1_data = []
-#
-#     fig, ax = plt.subplots()
-#     ax.set_xlim(-(l1+l2), (l1+l2))
-#     ax.set_ylim(-(l1+l2), (l1+l2))
-#     line1, = ax.plot(0, 0)
-#
-#
-#     ax.grid(color='lightgrey')
-#
-#
-#     def animation_frame(i):
-#         x1_data=np.linspace(0.0, time[i],10)
-#         y1_data=np.linspace(0.0, th1[i],10)
-#
-#         # line1.set_xdata(x1_data)
-#         # line1.set_ydata(y1_data)
-#
-#         return line1,
-#
-#     animation = FuncAnimation(fig, func=animation_frame, frames=np.arange(0, int(t/h), 1), interval=h*1000)
-#     plt.show()
-#
-#
 
 
 
@@ -140,19 +114,3 @@ def animation():
 
 
 
-
-
-#
-# fig, ax = plt.subplots()
-# line, = ax.plot(0, 0)
-# def animation():
-#     x_data=[]
-#     y_data=[]
-#
-# def animation_frame(i):
-#     x_data=time[i]
-#     y_data=th1[i]
-#
-#     return line,
-# animation = FuncAnimation(fig,func=animation_frame,frames= np.arange(0, 10, 0.01), interval=10)
-# plt.show

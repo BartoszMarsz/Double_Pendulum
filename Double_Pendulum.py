@@ -24,7 +24,7 @@ t2=time.time()
 print(t2-t1)
 from plot import *
 graph()
-trajectory(const)
+trajectory()
 animation()
 
 #czas z boku animacji
