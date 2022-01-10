@@ -19,34 +19,31 @@ def graph():
     plt.plot(time, th1,color='b', lw=1, ls='-')
     plt.ylabel(r'$\theta_1$[rad]',fontsize=12)
     plt.xticks(np.arange(0, t+0.5, 1))
-    plt.grid(color='lightgrey')
+    plt.grid(color='dimgrey')
 
     plt.subplot(222)
     plt.plot(time, th2, color='r', lw=1, ls='-')
     plt.ylabel(r'$\theta_2$[rad]', fontsize=12)
     plt.xticks(np.arange(0, t+0.5, 1))
-    plt.grid(color='lightgrey')
+    plt.grid(color='dimgrey')
+
 
     plt.subplot(223)
     plt.plot(time, om1, color='g', lw=1, ls='-')
     plt.xlabel('t[s]', fontsize=12)
     plt.ylabel(r'$\omega_1[\frac{rad}{s}]$', fontsize=12)
     plt.xticks(np.arange(0, t+0.5, 1))
-    plt.grid(color='lightgrey')
+    plt.grid(color='dimgrey')
+
 
     plt.subplot(224)
     plt.plot(time, om2, color='y', lw=1, ls='-')
     plt.xlabel('t[s]', fontsize=12)
     plt.ylabel(r'$\omega_2[\frac{rad}{s}]$', fontsize=12)
     plt.xticks(np.arange(0, t+0.5, 1))
-    plt.grid(color='lightgrey')
-    #
+    plt.grid(color='dimgrey')
 
 
-
-
-
-    #
     plt.show()
 
 def trajectory(const):
@@ -69,11 +66,10 @@ def trajectory(const):
     plt.legend(loc='upper right')
     plt.xlabel('x')
     plt.ylabel('y')
-   #
-    ax.grid(color='lightgrey')
-    #ax.set_facecolor(color='')
 
-    #
+    ax.grid(color='dimgrey')
+    ax.set_facecolor(color='black')
+
     plt.show()
 
 def animation():
@@ -90,9 +86,8 @@ def animation():
     x_left, x_right = ax.get_xlim()
     y_low, y_high = ax.get_ylim()
     ax.set_aspect(abs((x_right - x_left) / (y_low - y_high)) * ratio)
-    ax.grid(color='lightgrey')
-    #ax.set_facecolor(color='darkblue')
-
+    ax.grid(color='dimgrey')
+    ax.set_facecolor(color='black')
 
 
     def animation_frame(i):
@@ -108,3 +103,56 @@ def animation():
 
     animation = FuncAnimation(fig, func=animation_frame, frames=np.arange(0, int(t/h), 1), interval=h*1000)
     plt.show()
+
+
+
+
+# def animation():
+#     x1_data = []
+#     y1_data = []
+#
+#     fig, ax = plt.subplots()
+#     ax.set_xlim(-(l1+l2), (l1+l2))
+#     ax.set_ylim(-(l1+l2), (l1+l2))
+#     line1, = ax.plot(0, 0)
+#
+#
+#     ax.grid(color='lightgrey')
+#
+#
+#     def animation_frame(i):
+#         x1_data=np.linspace(0.0, time[i],10)
+#         y1_data=np.linspace(0.0, th1[i],10)
+#
+#         # line1.set_xdata(x1_data)
+#         # line1.set_ydata(y1_data)
+#
+#         return line1,
+#
+#     animation = FuncAnimation(fig, func=animation_frame, frames=np.arange(0, int(t/h), 1), interval=h*1000)
+#     plt.show()
+#
+#
+
+
+
+
+
+
+
+
+
+#
+# fig, ax = plt.subplots()
+# line, = ax.plot(0, 0)
+# def animation():
+#     x_data=[]
+#     y_data=[]
+#
+# def animation_frame(i):
+#     x_data=time[i]
+#     y_data=th1[i]
+#
+#     return line,
+# animation = FuncAnimation(fig,func=animation_frame,frames= np.arange(0, 10, 0.01), interval=10)
+# plt.show
