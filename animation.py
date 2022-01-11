@@ -47,7 +47,7 @@ def graph_anim():
         OM2.set_ydata(om2[:i])
         return TH1, TH2, OM1, OM2,
 
-    animation = FuncAnimation(fig, func=animation_frame, frames=range(1,1000,10), interval=100, repeat=False)
+    animation = FuncAnimation(fig, func=animation_frame, frames=range(1, 1000, 1), interval=10, repeat=False)
 
     plt.show()
 
@@ -55,10 +55,21 @@ def animation():
     fig, ax = plt.subplots()
     ax.set_xlim(-(l1+l2), (l1+l2))
     ax.set_ylim(-(l1+l2), (l1+l2))
-    line1, = ax.plot(0, 0)
-    line2, = ax.plot(0, 0)
     traj1, = ax.plot(0, 0)
     traj2, = ax.plot(0, 0)
+    line1, = ax.plot(0, 0)
+    line2, = ax.plot(0, 0)
+
+
+    traj1.set_color('lightgray')
+    traj1.set_alpha(0.3)
+    traj2.set_color('lightgray')
+    traj2.set_alpha(0.3)
+    line1.set_color('darkorange')
+    line2.set_color('mediumblue')
+    line1.set_linewidth(2)
+    line2.set_linewidth(2)
+
     ratio = 1.0
     x_left, x_right = ax.get_xlim()
     y_low, y_high = ax.get_ylim()
@@ -76,5 +87,5 @@ def animation():
         traj2.set_ydata(Y2[:i])
         return line1, line2, traj1, traj2
 
-    animation = FuncAnimation(fig, func=animation_frame, frames=range(1,1000,10), interval=100, repeat=False)
+    animation = FuncAnimation(fig, func=animation_frame, frames=range(1,1000,1), interval=10, repeat=False)
     plt.show()

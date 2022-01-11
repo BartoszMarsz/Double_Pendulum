@@ -14,7 +14,7 @@ const = (t, h, l1, l2, m1, m2)
 th1 = np.pi/2
 th2 = 0
 om1 = 0
-om2 = 0
+om2 = 21
 
 var = [th1, th2, om1, om2]
 
