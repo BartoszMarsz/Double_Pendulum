@@ -1,7 +1,5 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from matplotlib.animation import FuncAnimation
-
 
 data = np.loadtxt('trajectory.pdb', delimiter=';')
 time=data[1:, 0]
@@ -43,7 +41,6 @@ def graph():
     plt.xticks(np.arange(0, t+0.5, 1))
     plt.grid(color='dimgrey')
 
-
     plt.show()
 
 def trajectory():
@@ -70,38 +67,6 @@ def trajectory():
     ax.grid(color='dimgrey')
     ax.set_facecolor(color='black')
 
-    plt.show()
-
-def animation():
-    x1_data = []
-    y1_data = []
-    x2_data = []
-    y2_data = []
-    fig, ax = plt.subplots()
-    ax.set_xlim(-(l1+l2), (l1+l2))
-    ax.set_ylim(-(l1+l2), (l1+l2))
-    line1, = ax.plot(0, 0)
-    line2, = ax.plot(0, 0)
-    ratio = 1.0
-    x_left, x_right = ax.get_xlim()
-    y_low, y_high = ax.get_ylim()
-    ax.set_aspect(abs((x_right - x_left) / (y_low - y_high)) * ratio)
-    ax.grid(color='dimgrey')
-    ax.set_facecolor(color='black')
-
-
-    def animation_frame(i):
-        x1_data=np.linspace(0.0, l1*np.sin(th1[i]),10)
-        y1_data=np.linspace(0.0, -l1*np.cos(th1[i]),10)
-        x2_data=np.linspace(l1*np.sin(th1[i]), l1*np.sin(th1[i])+l2*np.sin(th2[i]), 10)
-        y2_data=np.linspace(-l1*np.cos(th1[i]), -l1*np.cos(th1[i])-l2*np.cos(th2[i]), 10)
-        line1.set_xdata(x1_data)
-        line1.set_ydata(y1_data)
-        line2.set_xdata(x2_data)
-        line2.set_ydata(y2_data)
-        return line1, line2,
-
-    animation = FuncAnimation(fig, func=animation_frame, frames=np.arange(0, int(t/h), 1), interval=h*1000)
     plt.show()
 
 
