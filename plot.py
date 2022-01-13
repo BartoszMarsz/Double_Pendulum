@@ -68,14 +68,3 @@ def trajectory():
     ax.set_facecolor(color='black')
 
     plt.show()
-
-
-
-
-
-
-
-
-
-
-

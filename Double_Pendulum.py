@@ -7,27 +7,24 @@ l2 = 1
 m1 = 1
 m2 = 1
 h = 0.01
-t = 10
+t = 5
 
 const = (t, h, l1, l2, m1, m2)
 
-th1 = np.pi/2
-th2 = 0
+th1 = np.pi / 3
+th2 = np.pi / 3 + np.pi / 3
 om1 = 0
-om2 = 21
+om2 = 0
 
 var = [th1, th2, om1, om2]
 
-t1=time.time()
-output(const,var)
-t2=time.time()
-print(t2-t1)
+t1 = time.time()
+output(const, var)
+t2 = time.time()
+print(t2 - t1)
 from plot import *
 from animation import *
+
 graph()
 trajectory()
-graph_anim()
 animation()
-
-
-#czas z boku animacji
