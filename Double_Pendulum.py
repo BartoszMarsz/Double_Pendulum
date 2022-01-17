@@ -3,18 +3,18 @@ import numpy as np
 import time
 
 l1 = 1
-l2 = 1
+l2 = 2
 m1 = 1
 m2 = 1
 h = 0.01
-t = 60
+t = 15
 
 const = (t, h, l1, l2, m1, m2)
 
-th1 = np.pi / 3
-th2 = np.pi / 3 + np.pi / 3
+th1 = np.pi / 2
+th2 = 2 * np.pi / 3
 om1 = 0
-om2 = 3
+om2 = 0
 
 var = [th1, th2, om1, om2]
 

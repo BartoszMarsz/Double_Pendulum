@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.animation import FuncAnimation
+import time as ti
 
 data = np.loadtxt('trajectory.pdb', delimiter=';')
 time = np.array(data[1:, 0])
@@ -83,6 +84,7 @@ def animation():
     line2.set_linewidth(2)
 
     def animation_frame(i):
+        # print(ti.time())
         TH1.set_xdata(time[:i])
         TH1.set_ydata(th1[:i])
         TH2.set_xdata(time[:i])
@@ -103,5 +105,5 @@ def animation():
 
         return TH1, TH2, OM1, OM2, line1, line2, trajectory1, trajectory2,
 
-    anim = FuncAnimation(fig, func=animation_frame, frames=range(1, int(t / h), 5), interval=10 * 5, repeat=False)
+    anim = FuncAnimation(fig, func=animation_frame, frames=range(1, int(t / h), 1), interval=0, repeat=False, blit=True)
     plt.show()
