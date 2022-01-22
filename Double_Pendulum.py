@@ -85,6 +85,7 @@ root.mainloop()
 from plot import *
 from animation import *
 
+animation()
 graph()
 trajectory()
-animation()
+

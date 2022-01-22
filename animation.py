@@ -82,9 +82,31 @@ def animation():
     line2.set_color('mediumblue')
     line1.set_linewidth(2)
     line2.set_linewidth(2)
-
+    global max_th1, max_th2, max_th, min_th1, min_th2, min_th
+    max_th1 = 0
+    max_th2 = 0
+    min_th1 = 0
+    min_th2 = 0
+    max_th = 0
+    min_th=0
     def animation_frame(i):
-        # print(ti.time())
+        print(ti.time())
+        global max_th1, max_th2, max_th, min_th1, min_th2, min_th
+        if th1[i]>max_th1:
+           max_th1 = th1[i]
+        if th2[i]>max_th2:
+           max_th2 = th2[i]
+        if th1[i]<min_th1:
+           min_th1 = th1[i]
+        if th2[i]<min_th2:
+           min_th2 = th2[i]
+
+        max_th=np.maximum(max_th1,max_th2)
+        min_th = np.minimum(min_th1, min_th2)
+
+        ax1.set_ylim(min_th-1,max_th+1)
+
+        # ax1.set_xticks()
         TH1.set_xdata(time[:i])
         TH1.set_ydata(th1[:i])
         TH2.set_xdata(time[:i])
@@ -105,5 +127,5 @@ def animation():
 
         return TH1, TH2, OM1, OM2, line1, line2, trajectory1, trajectory2,
 
-    anim = FuncAnimation(fig, func=animation_frame, frames=range(1, int(t / h), 1), interval=0, repeat=False, blit=True)
+    anim = FuncAnimation(fig, func=animation_frame, frames=range(1, int(t / h), 4), interval=0, repeat=False, blit=True)
     plt.show()
