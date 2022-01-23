@@ -82,53 +82,51 @@ def animation():
     line2.set_color('mediumblue')
     line1.set_linewidth(2)
     line2.set_linewidth(2)
+
     global max_th1, max_th2, max_th, min_th1, min_th2, min_th, max_om1, max_om2, min_om1, min_om2, max_om, min_om
     max_th1 = 0
     max_th2 = 0
     min_th1 = 0
     min_th2 = 0
     max_th = 0
-    min_th=0
-
-    max_om1=0
-    max_om2=0
-    min_om1=0
-    min_om2=0
-    max_om=0
-    min_om=0
+    min_th = 0
+    max_om1 = 0
+    max_om2 = 0
+    min_om1 = 0
+    min_om2 = 0
+    max_om = 0
+    min_om = 0
 
     def animation_frame(i):
         # print(ti.time())
         global max_th1, max_th2, max_th, min_th1, min_th2, min_th, max_om1, max_om2, min_om1, min_om2, max_om, min_om
-        if th1[i]>max_th1:
+        if th1[i] > max_th1:
            max_th1 = th1[i]
-        if th2[i]>max_th2:
+        if th2[i] > max_th2:
            max_th2 = th2[i]
-        if th1[i]<min_th1:
+        if th1[i] < min_th1:
            min_th1 = th1[i]
-        if th2[i]<min_th2:
+        if th2[i] < min_th2:
            min_th2 = th2[i]
 
-        if om1[i]>max_om1:
+        if om1[i] > max_om1:
            max_om1 = om1[i]
-        if om2[i]>max_om2:
+        if om2[i] > max_om2:
            max_om2 = om2[i]
-        if om1[i]<min_om1:
+        if om1[i] < min_om1:
            min_om1 = om1[i]
-        if om2[i]<min_om2:
+        if om2[i] < min_om2:
            min_om2 = om2[i]
 
-
-
-        max_th=np.maximum(max_th1,max_th2)
+        max_th = np.maximum(max_th1, max_th2)
         min_th = np.minimum(min_th1, min_th2)
 
-        max_om=np.maximum(max_om1,max_om2)
+        max_om = np.maximum(max_om1, max_om2)
         min_om = np.minimum(min_om1, min_om2)
 
-        ax1.set_ylim(min_th-1,max_th+1)
+        ax1.set_ylim(min_th-1, max_th+1)
 
-        ax2.set_ylim(min_om-1,max_om+1)
+        ax2.set_ylim(min_om-1, max_om+1)
 
 
         # ax1.set_xticks()
