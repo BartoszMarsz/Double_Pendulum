@@ -4,7 +4,7 @@ root = Tk()
 root.title('Double Pendulum')
 
 e = Entry(root, width='35', borderwidth=5, bg='blue', fg='white')
-e.grid(row=0, column=0, columnspan=3, padx=10, pady=10)
+e.grid(row=0, column=0, columnspan=3, padx=20, pady=20)
 #e.insert(0, 'Enter your number: ')
 
 #myLabel1 = Label(root, text='Hello world!').grid(row=0, column=0)

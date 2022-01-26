@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.animation import FuncAnimation
-import time as ti
 
 data = np.loadtxt('trajectory.pdb', delimiter=';')
 time = np.array(data[1:, 0])
@@ -13,6 +12,10 @@ t = data[0][0]
 h = data[0][1]
 l1 = data[0][2]
 l2 = data[0][3]
+th_max = max(10,np.amax(np.concatenate((th1,th2))))
+th_min = min(-10,np.amin(np.concatenate((th1,th2))))
+om_max = max(10,np.amax(np.concatenate((om1,om2))))
+om_min = min(-10,np.amin(np.concatenate((om1,om2))))
 
 X1 = l1 * np.sin(th1)
 Y1 = -l1 * np.cos(th1)
@@ -22,24 +25,28 @@ Y2 = -l1 * np.cos(th1) - l2 * np.cos(th2)
 
 def animation():
     # defining figure and plots
-    fig = plt.figure(figsize=(15, 5))
+    fig = plt.figure(figsize=(15, 8))
+    figManager = plt.get_current_fig_manager()
+    figManager.window.showMaximized()
     ax1 = fig.add_subplot(2, 2, 1)
     ax2 = fig.add_subplot(2, 2, 3)
     ax3 = fig.add_subplot(2, 2, (2, 4))
-
+    ax3.set_title('Motion of double pendulum', fontsize=25)
+    ax1.set_title(r'Graph of $\theta_1(t)$ and $\theta_2(t)$', fontsize=25)
+    ax2.set_title(r'Graph of $\omega_1(t)$ and $\omega_2(t)$', fontsize=25)
     # defining axises
     ax1.set_xlim(0, t)
-    ax1.set_ylim(-10, 10)
+    ax1.set_ylim(th_min-0.5, th_max+0.5)
     ax2.set_xlim(0, t)
-    ax2.set_ylim(-10, 10)
+    ax2.set_ylim(om_min-0.5, om_max+0.5)
     ax3.set_xlim(-1.1 * (l1 + l2), 1.1 * (l1 + l2))
     ax3.set_ylim(-1.1 * (l1 + l2), 1.1 * (l1 + l2))
 
-    ax1.set_ylabel('[rad]', fontsize=12)
-    ax2.set_ylabel(r'[$\frac{rad}{s}$]', fontsize=15)
-    ax2.set_xlabel('t[s]', fontsize=12)
-    ax3.set_xlabel('[m]', fontsize=12)
-    ax3.set_ylabel('[m]', fontsize=12)
+    ax1.set_ylabel('[rad]', fontsize=20)
+    ax2.set_ylabel(r'[$\frac{rad}{s}$]', fontsize=20)
+    ax2.set_xlabel('t[s]', fontsize=20)
+    ax3.set_xlabel('[m]', fontsize=20)
+    ax3.set_ylabel('[m]', fontsize=20)
 
     # specifying appearance
     ax1.grid(color='dimgrey')
@@ -66,14 +73,15 @@ def animation():
     trajectory2, = ax3.plot(0, 0)
     line1, = ax3.plot(0, 0)
     line2, = ax3.plot(0, 0)
-
-    # defining legends
-    ax1.legend((TH1, TH2), (r'$\theta_1$', r'$\theta_2$'), loc='upper right', shadow=True, labelcolor='white',
-               facecolor='black')
-    ax2.legend((OM1, OM2), (r'$\omega_1$', r'$\omega_2$'), loc='upper right', shadow=True, labelcolor='white',
-               facecolor='black')
+    # timer
+    timer = ax3.text(0.05, 0.95, '', transform=ax3.transAxes, verticalalignment='top', color='black',fontsize=20, bbox=(dict(facecolor='wheat', boxstyle='round')))
 
     # specifying objects appearance
+    TH1.set_color('darkorange')
+    TH2.set_color('mediumblue')
+    OM1.set_color('darkorange')
+    OM2.set_color('mediumblue')
+
     trajectory1.set_color('lightgray')
     trajectory1.set_alpha(0.3)
     trajectory2.set_color('lightgray')
@@ -83,53 +91,13 @@ def animation():
     line1.set_linewidth(2)
     line2.set_linewidth(2)
 
-    global max_th1, max_th2, max_th, min_th1, min_th2, min_th, max_om1, max_om2, min_om1, min_om2, max_om, min_om
-    max_th1 = 0
-    max_th2 = 0
-    min_th1 = 0
-    min_th2 = 0
-    max_th = 0
-    min_th = 0
-    max_om1 = 0
-    max_om2 = 0
-    min_om1 = 0
-    min_om2 = 0
-    max_om = 0
-    min_om = 0
+    # defining legends
+    ax1.legend((TH1, TH2), (r'$\theta_1$', r'$\theta_2$'), loc='upper right', shadow=True, labelcolor='white',
+               facecolor='black', fontsize=20)
+    ax2.legend((OM1, OM2), (r'$\omega_1$', r'$\omega_2$'), loc='upper right', shadow=True, labelcolor='white',
+               facecolor='black', fontsize=20)
 
     def animation_frame(i):
-        # print(ti.time())
-        global max_th1, max_th2, max_th, min_th1, min_th2, min_th, max_om1, max_om2, min_om1, min_om2, max_om, min_om
-        if th1[i] > max_th1:
-           max_th1 = th1[i]
-        if th2[i] > max_th2:
-           max_th2 = th2[i]
-        if th1[i] < min_th1:
-           min_th1 = th1[i]
-        if th2[i] < min_th2:
-           min_th2 = th2[i]
-
-        if om1[i] > max_om1:
-           max_om1 = om1[i]
-        if om2[i] > max_om2:
-           max_om2 = om2[i]
-        if om1[i] < min_om1:
-           min_om1 = om1[i]
-        if om2[i] < min_om2:
-           min_om2 = om2[i]
-
-        max_th = np.maximum(max_th1, max_th2)
-        min_th = np.minimum(min_th1, min_th2)
-
-        max_om = np.maximum(max_om1, max_om2)
-        min_om = np.minimum(min_om1, min_om2)
-
-        ax1.set_ylim(min_th-1, max_th+1)
-
-        ax2.set_ylim(min_om-1, max_om+1)
-
-
-        # ax1.set_xticks()
         TH1.set_xdata(time[:i])
         TH1.set_ydata(th1[:i])
         TH2.set_xdata(time[:i])
@@ -147,8 +115,9 @@ def animation():
         trajectory1.set_ydata(Y1[:i])
         trajectory2.set_xdata(X2[:i])
         trajectory2.set_ydata(Y2[:i])
+        timer.set_text(str(time[i]))
 
-        return TH1, TH2, OM1, OM2, line1, line2, trajectory1, trajectory2,
+        return TH1, TH2, OM1, OM2, line1, line2, trajectory1, trajectory2, timer,
 
-    anim = FuncAnimation(fig, func=animation_frame, frames=range(1, int(t / h), 4), interval=0, repeat=False, blit=True)
+    anim = FuncAnimation(fig, func=animation_frame, frames=range(1, int(t / h), 1), interval=7, repeat=False, blit=True)
     plt.show()
