@@ -31,9 +31,9 @@ def animation():
     ax1 = fig.add_subplot(2, 2, 1)
     ax2 = fig.add_subplot(2, 2, 3)
     ax3 = fig.add_subplot(2, 2, (2, 4))
-    ax3.set_title('Motion of double pendulum', fontsize=25)
-    ax1.set_title(r'Graph of $\theta_1(t)$ and $\theta_2(t)$', fontsize=25)
-    ax2.set_title(r'Graph of $\omega_1(t)$ and $\omega_2(t)$', fontsize=25)
+    ax3.set_title('Motion of double pendulum', fontsize=20)
+    ax1.set_title(r'Graph of $\theta_1(t)$ and $\theta_2(t)$', fontsize=20)
+    ax2.set_title(r'Graph of $\omega_1(t)$ and $\omega_2(t)$', fontsize=20)
     # defining axises
     ax1.set_xlim(0, t)
     ax1.set_ylim(th_min-0.5, th_max+0.5)
@@ -42,11 +42,11 @@ def animation():
     ax3.set_xlim(-1.1 * (l1 + l2), 1.1 * (l1 + l2))
     ax3.set_ylim(-1.1 * (l1 + l2), 1.1 * (l1 + l2))
 
-    ax1.set_ylabel('[rad]', fontsize=20)
-    ax2.set_ylabel(r'[$\frac{rad}{s}$]', fontsize=20)
-    ax2.set_xlabel('t[s]', fontsize=20)
-    ax3.set_xlabel('[m]', fontsize=20)
-    ax3.set_ylabel('[m]', fontsize=20)
+    ax1.set_ylabel('[rad]', fontsize=15)
+    ax2.set_ylabel(r'[$\frac{rad}{s}$]', fontsize=15)
+    ax2.set_xlabel('t[s]', fontsize=15)
+    ax3.set_xlabel('[m]', fontsize=15)
+    ax3.set_ylabel('[m]', fontsize=15)
 
     # specifying appearance
     ax1.grid(color='dimgrey')
@@ -119,5 +119,5 @@ def animation():
 
         return TH1, TH2, OM1, OM2, line1, line2, trajectory1, trajectory2, timer,
 
-    anim = FuncAnimation(fig, func=animation_frame, frames=range(1, int(t / h), 1), interval=7, repeat=False, blit=True)
+    anim = FuncAnimation(fig, func=animation_frame, frames=range(1, int(t / h), 2), interval=0, repeat=False, blit=True)
     plt.show()
